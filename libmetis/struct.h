@@ -165,6 +165,7 @@ idx_t llswitch;                /*-# ������ ���.�����
     idx_t smallgr;                /*if the graph is small, just find a single vertex separator in MlevelNodeBisecL2*/
     idx_t ncoarsengr;            /* number call of CoarsenGraphNlevels in MlevelNodeBisecL2*/
     idx_t nrunsmlndl1;            /*number call of MlevelNodeBisectionL1 in MlevelNodeBisecL2*/
+    idx_t minnedges;               /* minimum number of edges for paralleling grpah in MlevelNestedDissection */
 
   idx_t ncon;                   /*!< The number of balancing constraints */
   idx_t nparts;                 /*!< The number of partitions */
