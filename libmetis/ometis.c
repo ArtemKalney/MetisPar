@@ -276,7 +276,7 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
 
     /* Recurse on lgraph first, as its lastvtx depends on rgraph->nvtxs, which
        will not be defined upon return from MlevelNestedDissection. */
-    if (lgraph->nedges > ctrl->minnedges)
+    if (lgraph->nedges > ctrl->minnedges && lgraph->nvtxs > ctrl->minnvtxs)
     {
         #pragma omp task default(none) shared(ctrl, lgraph, order, lvtx)
         {
@@ -308,7 +308,7 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
         }
     }
 
-    if (rgraph->nedges > ctrl->minnedges)
+    if (rgraph->nedges > ctrl->minnedges && rgraph->nvtxs > ctrl->minnvtxs)
     {
         #pragma omp task default(none) shared(ctrl, rgraph, order, rvtx)
         {

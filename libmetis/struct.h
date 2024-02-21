@@ -166,6 +166,7 @@ idx_t llswitch;                /*-# ������ ���.�����
     idx_t ncoarsengr;            /* number call of CoarsenGraphNlevels in MlevelNodeBisecL2*/
     idx_t nrunsmlndl1;            /*number call of MlevelNodeBisectionL1 in MlevelNodeBisecL2*/
     idx_t minnedges;               /* minimum number of edges for paralleling grpah in MlevelNestedDissection */
+    idx_t minnvtxs;               /* minimum number of nodes for paralleling grpah in MlevelNestedDissection */
 
   idx_t ncon;                   /*!< The number of balancing constraints */
   idx_t nparts;                 /*!< The number of partitions */
