@@ -278,7 +278,7 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
        will not be defined upon return from MlevelNestedDissection. */
     if (lgraph->nedges > ctrl->minnedges && lgraph->nvtxs > ctrl->minnvtxs)
     {
-        #pragma omp task default(none) shared(ctrl, lgraph, order, lvtx)
+        #pragma omp task default(none) firstprivate(lgraph, ctrl, order, lvtx)
         {
             ctrl_t *myctrl;
 
@@ -293,7 +293,7 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
                 LowLevelReordering(myctrl, lgraph, order, lvtx);
             }
 
-            FreeCtrl(&myctrl);
+            // FreeCtrl(&myctrl);
         }
     }
     else
@@ -308,27 +308,27 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
         }
     }
 
-    if (rgraph->nedges > ctrl->minnedges && rgraph->nvtxs > ctrl->minnvtxs)
-    {
-        #pragma omp task default(none) shared(ctrl, rgraph, order, rvtx)
-        {
-            ctrl_t *myctrl;
+    // if (rgraph->nedges > ctrl->minnedges && rgraph->nvtxs > ctrl->minnvtxs)
+    // {
+    //     #pragma omp task default(none) shared(ctrl, rgraph, order, rvtx)
+    //     {
+    //         ctrl_t *myctrl;
 
-            myctrl = __duplicate_ctrl(ctrl, rgraph);
+    //         myctrl = __duplicate_ctrl(ctrl, rgraph);
 
-            if (rgraph->nvtxs > ctrl->llswitch && rgraph->nedges > 0)
-            {
-                MlevelNestedDissection(myctrl, rgraph, order, rvtx);
-            }
-            else
-            {
-                LowLevelReordering(myctrl, rgraph, order, rvtx);
-            }
+    //         if (rgraph->nvtxs > ctrl->llswitch && rgraph->nedges > 0)
+    //         {
+    //             MlevelNestedDissection(myctrl, rgraph, order, rvtx);
+    //         }
+    //         else
+    //         {
+    //             LowLevelReordering(myctrl, rgraph, order, rvtx);
+    //         }
 
-            FreeCtrl(&myctrl);
-        }
-    }
-    else
+    //         FreeCtrl(&myctrl);
+    //     }
+    // }
+    // else
     {
         if (rgraph->nvtxs > ctrl->llswitch && rgraph->nedges > 0)
         {
@@ -340,7 +340,7 @@ void MlevelNestedDissection(ctrl_t* ctrl, graph_t* graph, idx_t* order,
         }
     }
 
-    #pragma omp taskwait
+    // #pragma omp taskwait
 }
 
 

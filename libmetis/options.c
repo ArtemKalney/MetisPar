@@ -77,8 +77,8 @@ ctrl_t *SetupCtrl(moptype_et optype, idx_t *options, idx_t ncon, idx_t nparts,
       ctrl->smallgr     = GETOPTION(options, METIS_OPTION_SMALLGR, 5000);
       ctrl->ncoarsengr  = GETOPTION(options, METIS_OPTION_NCOARSENGR, 4);
       ctrl->nrunsmlndl1 = GETOPTION(options, METIS_OPTION_NRUNSMLNDL1, 5);
-      ctrl->minnedges = GETOPTION(options, METIS_OPTION_MINNEDGES, 0);
-      ctrl->minnvtxs = GETOPTION(options, METIS_OPTION_MINNVTXS, 0);
+      ctrl->minnedges = GETOPTION(options, METIS_OPTION_MINNEDGES, INT_MIN);
+      ctrl->minnvtxs = GETOPTION(options, METIS_OPTION_MINNVTXS, INT_MIN);
       break;
 
     default:
